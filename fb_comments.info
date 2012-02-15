@@ -1,0 +1,6 @@
+name = Facebook Comment
+description = Build comments posted by fb comments plugin into Drupal comment system.
+package = Drupal for Facebook
+core = 7.x
+
+dependencies[] = fbg_api
