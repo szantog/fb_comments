@@ -1,0 +1,36 @@
+<?php
+/**
+ * @file
+ *   fb_comments.install
+ */
+
+/**
+ * Implements hook_install().
+ */
+function fb_comments_install() {
+  $spec = array(
+    'type' => 'int',
+    'description' => 'The facebook comment id.',
+  );
+  db_add_field('comment', 'fb_cid', $spec);
+}
+
+/**
+ * Implements hook_schema_alter().
+ * @param type $schema
+ */
+function fb_comments_schema_alter($schema) {
+  // Add facebook id field to existing schema of comment table.
+  $schema['comment']['fields']['fb_cid'] = array(
+    'type' => 'int',
+    'description' => 'The facebook comment id.',
+  );
+  return $schema;
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function fb_comment_uninstall() {
+  db_drop_field('comment', 'fb_cid');
+}
