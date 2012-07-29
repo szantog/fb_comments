@@ -9,3 +9,21 @@
  *    http://szantogabor.com
  *
  */
+
+function fb_comments_form_comment_form_alter(&$form, &$form_state) {
+  extract(fb_vars());
+  $cuku = $GLOBALS;
+  $token1 = $fb->getAccessToken();
+  $token2 = fb_get_token($fb);
+  $user = fbg_api_get_fb_object('me', array('access_token' => $token2));
+  dsm(get_defined_vars());
+}
+
+function fb_comments_comment_insert($comment) {
+  return db_update('comment')
+  ->fields(array(
+    'fb_cid' => $comment->fb_cid,
+  ))
+  ->condition('cid', $comment->cid, '=')
+  ->execute();
+}

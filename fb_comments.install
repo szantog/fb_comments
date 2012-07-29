@@ -9,7 +9,8 @@
  */
 function fb_comments_install() {
   $spec = array(
-    'type' => 'int',
+    'type' => 'varchar',
+    'length' => 30,
     'description' => 'The facebook comment id.',
   );
   db_add_field('comment', 'fb_cid', $spec);
@@ -22,7 +23,8 @@ function fb_comments_install() {
 function fb_comments_schema_alter($schema) {
   // Add facebook id field to existing schema of comment table.
   $schema['comment']['fields']['fb_cid'] = array(
-    'type' => 'int',
+    'type' => 'varchar',
+    'length' => 30,
     'description' => 'The facebook comment id.',
   );
   return $schema;
